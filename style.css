@@ -20,14 +20,15 @@
 
 @keyframes floatHearts {
   0% {
-    transform: translateY(100vh) scale(0.5);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
   100% {
-    transform: translateY(-10vh) scale(1.5);
+    transform: translateY(-100vh) scale(1.5);
     opacity: 0;
   }
 }
+
 
 .card-foto {
   border-radius: 0.5rem;
@@ -40,4 +41,34 @@
 .card-foto:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.card-foto {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+}
+
+.card-foto:nth-child(odd) {
+  animation-delay: 0.3s;
+}
+.card-foto:nth-child(even) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.blinking {
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
 }

@@ -14,7 +14,14 @@
   </video>
 
   <header class="text-center py-6">
-    <h1 class="text-4xl font-bold">Para o amor da minha vida 💙</h1>
+    <audio id="bgMusic" loop>
+  <source src="um-amor-puro.mp3" type="audio/mpeg" />
+</audio>
+
+    <h1 class="text-4xl font-bold">
+  <span id="typing"></span><span class="blinking">|</span>
+    </h1>
+
     <p class="text-lg text-white-200 mt-2">Cada momento ao seu lado é inesquecível</p>
   </header>
 
@@ -81,6 +88,51 @@
       msg.classList.remove("hidden");
       startHearts();
     });
+    const text = "Para o amor da minha vida 💙";
+let i = 0;
+const typingEl = document.getElementById("typing");
+
+function typeWriter() {
+  if (i < text.length) {
+    typingEl.textContent += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 100);
+  }
+}
+typeWriter();
+const music = document.getElementById("bgMusic");
+let mensagemMostrada = false;
+let coracoesIniciados = false;
+
+btn.addEventListener("click", () => {
+  // Mostrar mensagem e iniciar corações só uma vez
+  if (!mensagemMostrada) {
+    msg.classList.remove("hidden");
+    mensagemMostrada = true;
+  }
+
+  if (!coracoesIniciados) {
+    startHearts();
+    coracoesIniciados = true;
+  }
+
+  // Alternar música
+  if (music.paused) {
+    music.play();
+    btn.textContent = "Pausar música 💖";
+  } else {
+    music.pause();
+    btn.textContent = "Tocar música 💖";
+  }
+});
+
+heart.style.opacity = "0";
+heart.style.transition = "opacity 0.5s ease-in";
+setTimeout(() => {
+  heart.style.opacity = "1";
+}, 50);
+
+
   </script>
 </body>
 </html>
